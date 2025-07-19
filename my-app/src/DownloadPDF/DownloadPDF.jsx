@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {jsPDF} from "jspdf";
+import noImage from "../assets/No-Image.png";
 
 const DownloadPDF = () =>{
     const [books, setBooks] = useState([]);
@@ -46,7 +47,7 @@ const DownloadPDF = () =>{
             {
                 books.map((book, index) =>(
                     <li key={book.id}>
-                        <img src={book.volumeInfo?.imageLinks?.thumbnail} alt={book.volumeInfo.title}/>
+                        <img src={book.volumeInfo?.imageLinks?.thumbnail || noImage} alt={book.volumeInfo.title} style={{maxWidth:"128px"}}/>
                         <h3>Book {index + 1}</h3>
                         <p><strong>Title :</strong> {book.volumeInfo.title}</p>
                         <p><strong>Authors :</strong> {book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : "No Authors"}</p>
