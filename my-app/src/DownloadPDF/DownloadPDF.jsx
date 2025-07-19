@@ -46,6 +46,7 @@ const DownloadPDF = () =>{
             {
                 books.map((book, index) =>(
                     <li key={book.id}>
+                        <img src={book.volumeInfo?.imageLinks?.thumbnail} alt={book.volumeInfo.title}/>
                         <h3>Book {index + 1}</h3>
                         <p><strong>Title :</strong> {book.volumeInfo.title}</p>
                         <p><strong>Authors :</strong> {book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : "No Authors"}</p>
