@@ -1,0 +1,25 @@
+---
+import {client} from "../../lib/contentful";
+import "../../styles/global.css";
+import RichText from "../../components/RichText";
+
+export async function getStaticPaths(){
+    const res = await client.getEntries({
+        content_type:'blogpost'
+    });
+    return res.items.map((post) =>({
+        params : {slug: post.fields.slug},
+        props : { post: post.fields}
+    }))
+}
+
+
+const {post} = Astro.props;
+---
+<div class="bg-white text-gray-800 font-sans max-w-6xl mx-auto px-4">
+    <h2 class="text-3xl sm:text-5xl text-center font-bold text-gray-800 mt-4 mb-10">{post.title}</h1>
+    <p class="text-gray-600 sm:text-2xl mb-4">Author : {post.author}</p>
+    <div>
+        <RichText client:load document={post.body}/>
+    </div>
+</div>

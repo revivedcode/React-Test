@@ -1,0 +1,25 @@
+---
+import {client} from "../lib/contentful";
+import BlogCard from "../components/BlogCard.jsx";
+import "../styles/global.css";
+
+const res = await client.getEntries({
+	content_type:'blogpost'
+});
+
+const posts = res.items;
+---
+<div class="bg-white text-gray-800 font-sans py-10">
+	<div class="max-w-6xl mx-auto px-4">
+		<h1 class="text-4xl sm:text-5xl text-center font-bold text-indigo-700 mt-4 mb-10"> Astro + Contentful Blog</h1>
+		<ul class="space-y-6 grid gap-8">
+			{
+				posts.map(post => ( 
+				<li key={post.sys.id}
+				class="bg-white shadow-md p-6 rounded-lg hover:shadow-lg transition"> 
+				<BlogCard post={post.fields} /></li>
+			))
+			}
+		</ul>
+	</div>
+</div>
