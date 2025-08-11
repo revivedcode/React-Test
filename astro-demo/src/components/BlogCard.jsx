@@ -7,7 +7,7 @@ const BlogCard = ({post}) => {
             <p class="text-gray-600">{post.description}</p>
 
             {/* <div className='text-gray-600 line-clamp-3'> {post.body && documentToReactComponents(post.body)}</div> */}
-            {<a href={`/blog/${post.slug}`} className='text-indigo-600 font-medium hover:underline transition-colors inline-block my-5'>Read More about the Blog Post</a>}
+            {<a href={`/blog/${post.slug}`} className='text-indigo-600 font-medium hover:underline transition-colors inline-block my-5'>Read More about this Post</a>}
         </div>
     );
 }

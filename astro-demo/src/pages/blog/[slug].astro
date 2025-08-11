@@ -15,10 +15,18 @@ export async function getStaticPaths(){
 
 
 const {post} = Astro.props;
+const imageUrl = post.blogImage ? post.blogImage.fields.file.url : null;
+
 ---
 <div class="bg-white text-gray-800 font-sans max-w-6xl mx-auto px-4">
+    {<a href={`/`} class='text-indigo-600 font-medium hover:underline transition-colors inline-block my-5'>Back to the Blog Post</a>}
     <h2 class="text-3xl sm:text-5xl text-center font-bold text-gray-800 mt-4 mb-10">{post.title}</h1>
     <p class="text-gray-600 sm:text-2xl mb-4">Author : {post.author}</p>
+    
+    {imageUrl && (
+        <img src={imageUrl} alt={post.blogImage.fields.description || post.blogImage.fields.title} class="mx-auto mb-6 max-w-full h-auto" />
+    )}
+
     <div>
         <RichText client:load document={post.body}/>
     </div>
