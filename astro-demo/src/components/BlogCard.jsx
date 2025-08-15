@@ -1,5 +1,3 @@
-
-
 const BlogCard = ({post}) => {
     return(
         <div className='bg-white text-gray-800 font-sans'>
